@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     
     # DOCUMENT PATH
     # SINGLE PDF DOCUMENT OR DIRECTORY WITH MANY PDFS
-    DOCUMENTS_PATH: str = "./documents/ai_eng_book_notes.pdf"
+    DOCUMENTS_PATH: str
     # DOCUMENTS_PATH: str = "./documents"
     
     # DIRECTORIES
