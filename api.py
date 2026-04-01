@@ -46,8 +46,7 @@ def index_documents(req: IndexRequest):
 
     cfg = copy.deepcopy(settings)
     cfg.update_from_dict(req.model_dump())
-    print("MODEL RECEBIDO:", req.llm_model)
-    print("MODEL NO CFG:", cfg.LLM_MODEL)
+    
     rag = RAGSystem(cfg)
     rag.index_documents()
     rag_chain, retriever = rag.setup_rag_chain()
