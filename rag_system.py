@@ -190,6 +190,8 @@ class RAGSystem:
     def _get_llm(self):
         if self.llm is None:
             self._log(f"Initializing LLM: {self.config.LLM_MODEL}")
+            self._log(f"LLM Temperature: {self.config.TEMPERATURE}")
+            self._log(f"LLM MAX Tokens: {self.config.MAX_TOKENS}")
             self.llm = ChatGroq(
                 api_key=self.config.GROQ_API_KEY,
                 model=self.config.LLM_MODEL,
@@ -303,6 +305,8 @@ class RAGSystem:
             })
         elif self.config.SEARCH_TYPE == "similarity_score_threshold":
             search_kwargs["score_threshold"] = self.config.SCORE_THRESHOLD
+        
+        self._log(f'Retriever strategy: {self.config.SEARCH_TYPE}')
         
         return self.vectorstore.as_retriever(
             search_type=self.config.SEARCH_TYPE,

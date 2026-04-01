@@ -30,6 +30,7 @@ class IndexRequest(BaseModel):
     search_k: int = 4
     force_reindex: bool = False
     temperature: float = 0.0
+    llm_model: str = "openai/gpt-oss-120b"
 
 class ChatRequest(BaseModel):
     question: str
@@ -45,7 +46,8 @@ def index_documents(req: IndexRequest):
 
     cfg = copy.deepcopy(settings)
     cfg.update_from_dict(req.model_dump())
-
+    print("MODEL RECEBIDO:", req.llm_model)
+    print("MODEL NO CFG:", cfg.LLM_MODEL)
     rag = RAGSystem(cfg)
     rag.index_documents()
     rag_chain, retriever = rag.setup_rag_chain()

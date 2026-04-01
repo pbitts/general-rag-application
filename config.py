@@ -68,6 +68,7 @@ class Settings(BaseSettings):
     class Config:
         env_file = ".env"
         case_sensitive = True
+        frozen = False
 
     def update_from_dict(self, data: dict):
         if "documents_path"   in data: self.DOCUMENTS_PATH   = data["documents_path"]
